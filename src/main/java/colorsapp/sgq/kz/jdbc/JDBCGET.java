@@ -65,9 +65,9 @@ public class JDBCGET {
                 int update = Integer.parseInt(request
                         .queryParams("update"));
                 int check = resultSet.getInt("check");
-                if (check != update &&
-                        check > update &&
-                        0 < update)
+//                if (check != update &&
+//                        check > update &&
+//                        0 < update)
                     answer = new Gson()
                             .toJson(getAnswerList(update, check));
             }
