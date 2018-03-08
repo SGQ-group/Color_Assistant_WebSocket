@@ -92,7 +92,7 @@ public class JDBCGET {
     public String getCheck() {
         String answer = null;
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT check FROM update");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `update`");
             while (resultSet.next()) {
                 HashMap<String, String> answerMap = new HashMap<>();
                 answerMap.put("check", resultSet.getString("check"));
