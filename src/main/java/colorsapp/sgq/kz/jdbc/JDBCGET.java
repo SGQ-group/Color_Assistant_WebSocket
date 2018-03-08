@@ -69,7 +69,7 @@ public class JDBCGET {
 //                        check > update &&
 //                        0 < update)
                     answer = new Gson()
-                            .toJson(getAnswerList(update, check));
+                            .toJson(getAnswerList(update+1, check+1));
             }
         } catch (Exception e) {
             answer = null;
@@ -155,7 +155,7 @@ public class JDBCGET {
     private ArrayList<HashMap<String, String>> getAnswerList(int update, int check) throws SQLException {
         ArrayList<HashMap<String, String>> answerList = new ArrayList<>();
         for (int i = update; i < check; i++) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE combo_colors.check=" + i);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE `check`=" + i);
             while (resultSet.next()) {
                 HashMap<String, String> answerMap = new HashMap<>();
                 answerMap.put("id_col", resultSet.getString("id_col"));
