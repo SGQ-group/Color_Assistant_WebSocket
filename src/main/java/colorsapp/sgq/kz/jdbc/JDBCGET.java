@@ -72,7 +72,7 @@ public class JDBCGET {
                             .toJson(getAnswerList(update+1, check+1));
             }
         } catch (Exception e) {
-            answer = null;
+            answer = "eRROR";
         } finally {
             try {
                 connection.close();
