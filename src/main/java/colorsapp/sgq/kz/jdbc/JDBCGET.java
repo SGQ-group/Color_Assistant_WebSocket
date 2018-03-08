@@ -60,11 +60,11 @@ public class JDBCGET {
     public String getUpdate(Request request) {
         String answer = null;
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM `update`");
-            while (resultSet.next()) {
+            ResultSet result = statement.executeQuery("SELECT * FROM `update`");
+            while (result.next()) {
                 int update = Integer.parseInt(request
                         .queryParams("update"));
-                int check = resultSet.getInt("check");
+                int check = result.getInt("check");
                 if (check != update &&
                         check > update &&
                         0 < update)
