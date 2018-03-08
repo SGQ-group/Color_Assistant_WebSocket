@@ -68,8 +68,9 @@ public class JDBCGET {
 //                if (check != update &&
 //                        check > update &&
 //                        0 < update)
-                    answer = new Gson()
-                            .toJson(getAnswerList(update+1, check+1));
+                    answer = "sUCCESS";
+//                    answer = new Gson()
+//                            .toJson(getAnswerList(update+1, check+1));
             }
         } catch (Exception e) {
             answer = "eRROR";
