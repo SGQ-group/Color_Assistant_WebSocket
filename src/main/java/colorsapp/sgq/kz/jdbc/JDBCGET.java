@@ -59,19 +59,21 @@ public class JDBCGET {
      */
     public String getUpdate(Request request) {
         String answer = null;
+        int update = 0;
+        int check = 0;
         try {
-//            ResultSet result = statement.executeQuery("SELECT * FROM `update`");
-//            while (result.next()) {
-//                int update = Integer.parseInt(request
-//                        .queryParams("update"));
-//                int check = result.getInt("check");
-//                if (check != update &&
-//                        check > update &&
-//                        0 < update)
-                    answer = String.valueOf(getAnswerList().size());
-//                    answer = new Gson()
-//                            .toJson(getAnswerList(update+1, check+1));
-//            }
+            ResultSet result = statement.executeQuery("SELECT * FROM `update`");
+            while (result.next()) {
+                update = Integer.parseInt(request
+                        .queryParams("update"));
+                check = result.getInt("check");
+
+            }
+            if (check != update &&
+                    check > update &&
+                    0 < update)
+                answer = new Gson()
+                        .toJson(getAnswerList(update + 1, check + 1));
         } catch (Exception e) {
             answer = e.getLocalizedMessage();
         } finally {
@@ -97,8 +99,8 @@ public class JDBCGET {
             while (resultSet.next()) {
                 HashMap<String, String> answerMap = new HashMap<>();
                 answerMap.put("check", resultSet.getString("check"));
-                    answer = new Gson()
-                            .toJson(answerMap);
+                answer = new Gson()
+                        .toJson(answerMap);
             }
         } catch (Exception e) {
             answer = "Error";
@@ -156,25 +158,25 @@ public class JDBCGET {
     private ArrayList<HashMap<String, String>> getAnswerList(int update, int check) throws SQLException {
         ArrayList<HashMap<String, String>> answerList = new ArrayList<>();
 //        for (int i = update; i < check; i++) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors");
-            while (resultSet.next()) {
-                HashMap<String, String> answerMap = new HashMap<>();
-                answerMap.put("id_col", resultSet.getString("id_col"));
-                answerMap.put("col_1", resultSet.getString("col_1"));
-                answerMap.put("col_2", resultSet.getString("col_2"));
-                answerMap.put("col_3", resultSet.getString("col_3"));
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors");
+        while (resultSet.next()) {
+            HashMap<String, String> answerMap = new HashMap<>();
+            answerMap.put("id_col", resultSet.getString("id_col"));
+            answerMap.put("col_1", resultSet.getString("col_1"));
+            answerMap.put("col_2", resultSet.getString("col_2"));
+            answerMap.put("col_3", resultSet.getString("col_3"));
 
-                // Если четвертый цвет возвращает NULL, то мы его не записываем.
-                if (resultSet.getString("col_4") == null)
-                    answerMap.put("col_4", resultSet.getString("col_4"));
+            // Если четвертый цвет возвращает NULL, то мы его не записываем.
+            if (resultSet.getString("col_4") == null)
+                answerMap.put("col_4", resultSet.getString("col_4"));
 
-                // Если пятый цвет возвращает NULL, то мы его не записываем.
-                if (resultSet.getString("col_5") == null)
-                    answerMap.put("col_5", resultSet.getString("col_5"));
-                answerMap.put("like", resultSet.getString("like"));
-                answerMap.put("check", resultSet.getString("check"));
-                answerList.add(answerMap);
-            }
+            // Если пятый цвет возвращает NULL, то мы его не записываем.
+            if (resultSet.getString("col_5") == null)
+                answerMap.put("col_5", resultSet.getString("col_5"));
+            answerMap.put("like", resultSet.getString("like"));
+            answerMap.put("check", resultSet.getString("check"));
+            answerList.add(answerMap);
+        }
 //        }
         return answerList;
     }
