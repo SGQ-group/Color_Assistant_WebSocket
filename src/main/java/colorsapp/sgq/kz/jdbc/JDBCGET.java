@@ -94,9 +94,10 @@ public class JDBCGET {
         try {
             ResultSet resultSet = statement.executeQuery("SELECT check FROM update");
             while (resultSet.next()) {
+                HashMap<String, Integer> answerMap = new HashMap<>();
+                answerMap.put("check", resultSet.getInt("check"));
                     answer = new Gson()
-                            .toJson(new HashMap<String, Integer>()
-                            .put("check", resultSet.getInt("check")));
+                            .toJson(answerMap);
             }
         } catch (Exception e) {
             answer = "Error";
