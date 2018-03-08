@@ -99,7 +99,7 @@ public class JDBCGET {
                             .put("check", resultSet.getString("check")));
             }
         } catch (Exception e) {
-            answer = null;
+            answer = "Error";
         } finally {
             try {
                 connection.close();
