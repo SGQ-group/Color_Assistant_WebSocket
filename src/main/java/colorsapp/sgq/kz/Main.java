@@ -26,17 +26,17 @@ public class Main {
          * где "Update" - это последнее обновление БД
          * (В таблицах "combo_colors" и "update" заголовок называется "check")
          *
-         * https://example.com/user ?
+         * https://example.com/check ?
          * & update - Последнее обновление БД [int]
          */
-        get("/update", (request, response) -> new JDBCGET().getUpdate(request));
+        get("/check", (request, response) -> new JDBCGET().getUpdate(request));
 
         /**
          * Запрос PUT
          * Повышает рейтинг (like) на +1
          *
-         * https://example.com/user ?
-         * & id_col - Уникальный номер строки из таблицы "combo_colors"
+         * https://example.com/like ?
+         * & id_col - Уникальный номер строки из таблицы "combo_colors" [int]
          */
         put("/like", (request, response) -> new JDBCPUT().putUpdate(request));
     }
