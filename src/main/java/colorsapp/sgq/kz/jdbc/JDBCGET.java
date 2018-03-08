@@ -156,7 +156,7 @@ public class JDBCGET {
     private ArrayList<HashMap<String, String>> getAnswerList(int update, int check) throws SQLException {
         ArrayList<HashMap<String, String>> answerList = new ArrayList<>();
 //        for (int i = update; i < check; i++) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE `check`=" + 1);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE `check`=1");
             while (resultSet.next()) {
                 HashMap<String, String> answerMap = new HashMap<>();
                 answerMap.put("id_col", resultSet.getString("id_col"));
