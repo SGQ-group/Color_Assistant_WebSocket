@@ -60,7 +60,7 @@ public class JDBCGET {
     public String getUpdate(Request request) {
         String answer = null;
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM update");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM `update`");
             while (resultSet.next()) {
                 int update = Integer.parseInt(request
                         .queryParams("update"));
