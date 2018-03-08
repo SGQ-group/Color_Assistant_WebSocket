@@ -60,18 +60,18 @@ public class JDBCGET {
     public String getUpdate(Request request) {
         String answer = null;
         try {
-            ResultSet result = statement.executeQuery("SELECT * FROM `update`");
-            while (result.next()) {
-                int update = Integer.parseInt(request
-                        .queryParams("update"));
-                int check = result.getInt("check");
-                if (check != update &&
-                        check > update &&
-                        0 < update)
+//            ResultSet result = statement.executeQuery("SELECT * FROM `update`");
+//            while (result.next()) {
+//                int update = Integer.parseInt(request
+//                        .queryParams("update"));
+//                int check = result.getInt("check");
+//                if (check != update &&
+//                        check > update &&
+//                        0 < update)
                     answer = String.valueOf(getAnswerList().size());
 //                    answer = new Gson()
 //                            .toJson(getAnswerList(update+1, check+1));
-            }
+//            }
         } catch (Exception e) {
             answer = e.getLocalizedMessage();
         } finally {
