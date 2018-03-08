@@ -92,11 +92,11 @@ public class JDBCGET {
     public String getCheck() {
         String answer = null;
         try {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM update");
+            ResultSet resultSet = statement.executeQuery("SELECT check FROM update");
             while (resultSet.next()) {
                     answer = new Gson()
-                            .toJson(new HashMap<String, String>()
-                            .put("check", resultSet.getString("check")));
+                            .toJson(new HashMap<String, Integer>()
+                            .put("check", resultSet.getInt("check")));
             }
         } catch (Exception e) {
             answer = "Error";
