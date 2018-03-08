@@ -96,6 +96,7 @@ public class JDBCGET {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors");
         while (resultSet.next()) {
             HashMap<String, String> answerMap = new HashMap<>();
+            answerMap.put("id_col", resultSet.getString("id_col"));
             answerMap.put("col_1", resultSet.getString("col_1"));
             answerMap.put("col_2", resultSet.getString("col_2"));
             answerMap.put("col_3", resultSet.getString("col_3"));
@@ -129,6 +130,7 @@ public class JDBCGET {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE combo_colors.check=" + i);
             while (resultSet.next()) {
                 HashMap<String, String> answerMap = new HashMap<>();
+                answerMap.put("id_col", resultSet.getString("id_col"));
                 answerMap.put("col_1", resultSet.getString("col_1"));
                 answerMap.put("col_2", resultSet.getString("col_2"));
                 answerMap.put("col_3", resultSet.getString("col_3"));

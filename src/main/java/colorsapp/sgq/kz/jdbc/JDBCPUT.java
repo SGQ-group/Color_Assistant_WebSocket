@@ -34,6 +34,7 @@ public class JDBCPUT {
                     statement.execute("UPDATE combo_colors SET like=" +
                             like + " WHERE id_col=" +
                             id_col);
+                    answer = "Success: +1 id_col="+id_col;
                 }
             }
         } catch (Exception e) {
