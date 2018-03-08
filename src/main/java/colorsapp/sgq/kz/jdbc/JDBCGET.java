@@ -163,13 +163,13 @@ public class JDBCGET {
                 answerMap.put("col_2", resultSet.getString("col_2"));
                 answerMap.put("col_3", resultSet.getString("col_3"));
 
-                // Если четвертый цвет возвращает NULL, то мы его не записываем.
-                if (resultSet.getString("col_4") == null)
-                    answerMap.put("col_4", resultSet.getString("col_4"));
-
-                // Если пятый цвет возвращает NULL, то мы его не записываем.
-                if (resultSet.getString("col_5") == null)
-                    answerMap.put("col_5", resultSet.getString("col_5"));
+//                // Если четвертый цвет возвращает NULL, то мы его не записываем.
+//                if (resultSet.getString("col_4") == null)
+//                    answerMap.put("col_4", resultSet.getString("col_4"));
+//
+//                // Если пятый цвет возвращает NULL, то мы его не записываем.
+//                if (resultSet.getString("col_5") == null)
+//                    answerMap.put("col_5", resultSet.getString("col_5"));
                 answerMap.put("like", resultSet.getString("like"));
                 answerMap.put("check", resultSet.getString("check"));
                 answerList.add(answerMap);
