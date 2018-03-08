@@ -22,6 +22,14 @@ public class JDBCPUT {
         }
     }
 
+    /**
+     * Метод обновляет конкретную строку из БД таблицы "combo_colors"
+     * столбца "like" и заменяет ее значение на [int - like++].
+     *
+     * @param request - Аргумент для работы с запросами в БД.
+     * @return - Если была ошибка, ответ будет [404].
+     * Если ответ положительный, то [200]
+     */
     public String putUpdate(Request request) {
         String answer = null;
         int id_col = Integer.parseInt(request.queryParams("id_col"));

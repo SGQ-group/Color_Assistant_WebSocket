@@ -28,7 +28,7 @@ public class JDBCGET {
     /**
      * Метод возвращает все строки из таблицы в сетевой БД "combo_colors".
      *
-     * @return - Возвращает обработанный ответ в формате Json
+     * @return - Возвращает обработанный ответ в формате Json.
      * @version 1.0
      */
     public String getColors() {
@@ -53,14 +53,14 @@ public class JDBCGET {
      * Если у пользователя старая локальная БД,
      * то будет возращени новая из сети.
      *
-     * @param request - Аргумент для работы с запросами в БД
-     * @return - Возвращает обработанный ответ в формате Json
+     * @param request - Аргумент для работы с запросами в БД.
+     * @return - Возвращает обработанный ответ в формате Json.
      * @version 1.0
      */
     public String getUpdate(Request request) {
         String answer = null;
         try {
-            ResultSet resultSet = statement.executeQuery("");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM update");
             while (resultSet.next()) {
                 int update = Integer.parseInt(request
                         .queryParams("update"));
@@ -84,11 +84,38 @@ public class JDBCGET {
     }
 
     /**
-     * Метод выводит всю таблицу в БД "combo-colors"
-     * Не эффективна для обновления БД,
-     * но хорошо подходит для первого заполнениня локальной БД
+     * Метод берет с таблицы "update" столбец первой строки "check"
+     * и выводит ее в виде ответа.
      *
-     * @return - Возвращает ArrayList, после обработки ответа с БД
+     * @return - Возвращает последнюю версию обновления сетевой БД.
+     */
+    public String getCheck() {
+        String answer = null;
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM update");
+            while (resultSet.next()) {
+                    answer = new Gson()
+                            .toJson(new HashMap<String, String>()
+                            .put("check", resultSet.getString("check")));
+            }
+        } catch (Exception e) {
+            answer = null;
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return answer;
+    }
+
+    /**
+     * Метод выводит всю таблицу в БД "combo-colors".
+     * Не эффективна для обновления БД,
+     * но хорошо подходит для первого заполнениня локальной БД.
+     *
+     * @return - Возвращает ArrayList, после обработки ответа с БД.
      * @throws SQLException
      */
     private ArrayList<HashMap<String, String>> getAnswerList() throws SQLException {
@@ -117,11 +144,11 @@ public class JDBCGET {
 
     /**
      * Метод обновляет локальную БД.
-     * Использует меньше трафика, чем метод getAnswerList()
+     * Использует меньше трафика, чем метод getAnswerList().
      *
-     * @param update - Текущее обновление локальной БД пользователя
-     * @param check  - Последнее обновление сетевой БД
-     * @return - Возвращает ArrayList, после обработки ответа с БД
+     * @param update - Текущее обновление локальной БД пользователя.
+     * @param check  - Последнее обновление сетевой БД.
+     * @return - Возвращает ArrayList, после обработки ответа с БД.
      * @throws SQLException
      */
     private ArrayList<HashMap<String, String>> getAnswerList(int update, int check) throws SQLException {
@@ -135,11 +162,11 @@ public class JDBCGET {
                 answerMap.put("col_2", resultSet.getString("col_2"));
                 answerMap.put("col_3", resultSet.getString("col_3"));
 
-                // Если четвертый цвет возвращает NULL, то мы его не записываем
+                // Если четвертый цвет возвращает NULL, то мы его не записываем.
                 if (resultSet.getString("col_4") == null)
                     answerMap.put("col_4", resultSet.getString("col_4"));
 
-                // Если пятый цвет возвращает NULL, то мы его не записываем
+                // Если пятый цвет возвращает NULL, то мы его не записываем.
                 if (resultSet.getString("col_5") == null)
                     answerMap.put("col_5", resultSet.getString("col_5"));
                 answerMap.put("like", resultSet.getString("like"));
