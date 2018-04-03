@@ -46,7 +46,7 @@ public class Main {
          * https://example.com/like ?
          * & id_col - Уникальный номер строки из таблицы "combo_colors" [int].
          */
-        put("/like", (request, response) -> new JDBCPUT().putUpdate(request));
+//        put("/like", (request, response) -> new JDBCPUT().putUpdate(request));
     }
 
     static int getHerokuAssignedPort() {

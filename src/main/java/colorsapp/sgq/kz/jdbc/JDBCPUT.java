@@ -30,30 +30,30 @@ public class JDBCPUT {
      * @return - Если была ошибка, ответ будет [404].
      * Если ответ положительный, то [200]
      */
-    public String putUpdate(Request request) {
-        String answer = null;
-        int id_col = Integer.parseInt(request.queryParams("id_col"));
-        try {
-            if (id_col > 0) {
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE id_col=" +
-                        request.queryParams("id_col"));
-                while (resultSet.next()) {
-                    int like = resultSet.getInt("like") + 1;
-                    statement.execute("UPDATE combo_colors SET like=" +
-                            like + " WHERE id_col=" +
-                            id_col);
-                    answer = "Success: +1 id_col="+id_col;
-                }
-            }
-        } catch (Exception e) {
-            answer = null;
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return answer;
-    }
+//    public String putUpdate(Request request) {
+//        String answer = null;
+//        int id_col = Integer.parseInt(request.queryParams("id_col"));
+//        try {
+//            if (id_col > 0) {
+//                ResultSet resultSet = statement.executeQuery("SELECT * FROM combo_colors WHERE id_col=" +
+//                        request.queryParams("id_col"));
+//                while (resultSet.next()) {
+//                    int like = resultSet.getInt("like") + 1;
+//                    statement.execute("UPDATE combo_colors SET like=" +
+//                            like + " WHERE id_col=" +
+//                            id_col);
+//                    answer = "Success: +1 id_col="+id_col;
+//                }
+//            }
+//        } catch (Exception e) {
+//            answer = null;
+//        } finally {
+//            try {
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return answer;
+//    }
 }
