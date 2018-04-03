@@ -1,7 +1,6 @@
 package colorsapp.sgq.kz;
 
 import colorsapp.sgq.kz.jdbc.JDBCGET;
-import colorsapp.sgq.kz.jdbc.JDBCPUT;
 
 import static spark.Spark.*;
 
@@ -38,15 +37,6 @@ public class Main {
          * https://example.com/update
          */
         get("/update", (request, response) -> new JDBCGET().getCheck());
-
-        /**
-         * Запрос PUT.
-         * Повышает рейтинг (like) на +1.
-         *
-         * https://example.com/like ?
-         * & id_col - Уникальный номер строки из таблицы "combo_colors" [int].
-         */
-//        put("/like", (request, response) -> new JDBCPUT().putUpdate(request));
     }
 
     static int getHerokuAssignedPort() {
